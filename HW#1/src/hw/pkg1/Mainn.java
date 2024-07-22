@@ -2,10 +2,13 @@
 package hw.pkg1;
 
 
+
+
 public class Mainn extends javax.swing.JFrame {
 static Transito transito = new Transito(3000.0, 1500.0, 500.0);
     
     public Mainn() {
+        setTitle("Sistema de Multas de Tránsito");
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
