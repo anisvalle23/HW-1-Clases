@@ -3,9 +3,12 @@ package hw.pkg1;
 
 
 public class Mainn extends javax.swing.JFrame {
-
+static Transito transito = new Transito(3000.0, 1500.0, 500.0);
+    
     public Mainn() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
 
@@ -14,7 +17,6 @@ public class Mainn extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        tituloLabel = new javax.swing.JLabel();
         panelAgregar = new javax.swing.JPanel();
         codigoLabel = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JLabel();
@@ -30,6 +32,7 @@ public class Mainn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         codigoPagarField = new javax.swing.JTextField();
         PagarButton = new javax.swing.JButton();
+        tituloLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultadoArea = new javax.swing.JTextArea();
         imprimirMultasButton = new javax.swing.JButton();
@@ -43,43 +46,54 @@ public class Mainn extends javax.swing.JFrame {
         jPanel1.setSize(new java.awt.Dimension(1200, 800));
         jPanel1.setLayout(new java.awt.GridLayout());
 
-        jPanel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Component.error.borderColor"));
+        jPanel2.setBackground(new java.awt.Color(255, 238, 212));
         jPanel2.setForeground(new java.awt.Color(255, 204, 204));
         jPanel2.setLayout(null);
 
-        tituloLabel.setText("Sistema De Multas De Tránsito");
-        jPanel2.add(tituloLabel);
-        tituloLabel.setBounds(60, 40, 210, 40);
-
         panelAgregar.setBackground(javax.swing.UIManager.getDefaults().getColor("Component.error.borderColor"));
-        panelAgregar.setBorder(new javax.swing.border.MatteBorder(null));
+        panelAgregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelAgregar.setLayout(null);
 
+        codigoLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         codigoLabel.setText("Código:");
         panelAgregar.add(codigoLabel);
-        codigoLabel.setBounds(30, 30, 100, 20);
+        codigoLabel.setBounds(30, 40, 130, 40);
 
+        nombreLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         nombreLabel.setText("Nombre del Infractor:");
         panelAgregar.add(nombreLabel);
-        nombreLabel.setBounds(30, 70, 140, 17);
+        nombreLabel.setBounds(30, 80, 270, 50);
 
+        tipoLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         tipoLabel.setText("Tipo de Multa:");
         panelAgregar.add(tipoLabel);
-        tipoLabel.setBounds(30, 110, 120, 17);
+        tipoLabel.setBounds(30, 130, 210, 60);
 
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("LEVE: Lps 500.00");
         panelAgregar.add(jLabel4);
-        jLabel4.setBounds(30, 190, 150, 17);
+        jLabel4.setBounds(20, 270, 220, 30);
 
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
         jLabel5.setText("GRAVE: Lps 3000.00");
         panelAgregar.add(jLabel5);
-        jLabel5.setBounds(30, 150, 150, 17);
+        jLabel5.setBounds(20, 200, 260, 40);
 
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
         jLabel6.setText("MEDIO: Lps 1500.00");
         panelAgregar.add(jLabel6);
-        jLabel6.setBounds(30, 170, 150, 17);
+        jLabel6.setBounds(20, 240, 240, 30);
+
+        codigoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codigoFieldActionPerformed(evt);
+            }
+        });
         panelAgregar.add(codigoField);
-        codigoField.setBounds(210, 20, 130, 23);
+        codigoField.setBounds(280, 40, 200, 40);
 
         nombreField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +101,7 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         panelAgregar.add(nombreField);
-        nombreField.setBounds(210, 60, 130, 23);
+        nombreField.setBounds(280, 90, 200, 40);
 
         tipoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +109,9 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         panelAgregar.add(tipoField);
-        tipoField.setBounds(210, 100, 130, 23);
+        tipoField.setBounds(280, 140, 200, 40);
 
+        agregarButton.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         agregarButton.setText("Agregar Multa");
         agregarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,18 +119,19 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         panelAgregar.add(agregarButton);
-        agregarButton.setBounds(220, 170, 130, 23);
+        agregarButton.setBounds(220, 320, 280, 60);
 
         jPanel2.add(panelAgregar);
-        panelAgregar.setBounds(30, 160, 370, 230);
+        panelAgregar.setBounds(50, 150, 520, 400);
 
         jPanel3.setBackground(javax.swing.UIManager.getDefaults().getColor("Component.error.borderColor"));
-        jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel1.setText("Código:");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(30, 20, 70, 17);
+        jLabel1.setBounds(90, 20, 110, 30);
 
         codigoPagarField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,8 +139,9 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         jPanel3.add(codigoPagarField);
-        codigoPagarField.setBounds(180, 20, 64, 23);
+        codigoPagarField.setBounds(270, 20, 190, 40);
 
+        PagarButton.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         PagarButton.setText("Pagar Multa");
         PagarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,18 +149,24 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         jPanel3.add(PagarButton);
-        PagarButton.setBounds(210, 70, 140, 23);
+        PagarButton.setBounds(150, 100, 190, 40);
 
         jPanel2.add(jPanel3);
-        jPanel3.setBounds(30, 430, 380, 110);
+        jPanel3.setBounds(50, 570, 520, 160);
+
+        tituloLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        tituloLabel.setText("Sistema De Multas De Tránsito");
+        jPanel2.add(tituloLabel);
+        tituloLabel.setBounds(20, 50, 570, 100);
 
         resultadoArea.setColumns(20);
         resultadoArea.setRows(5);
         jScrollPane1.setViewportView(resultadoArea);
 
         jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(600, 160, 590, 600);
+        jScrollPane1.setBounds(600, 150, 590, 580);
 
+        imprimirMultasButton.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         imprimirMultasButton.setText("Imprimir Multas");
         imprimirMultasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,8 +174,9 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         jPanel2.add(imprimirMultasButton);
-        imprimirMultasButton.setBounds(670, 90, 150, 23);
+        imprimirMultasButton.setBounds(600, 70, 230, 50);
 
+        imprimirResumenButton.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         imprimirResumenButton.setText("Imprimir Resumen");
         imprimirResumenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +184,7 @@ public class Mainn extends javax.swing.JFrame {
             }
         });
         jPanel2.add(imprimirResumenButton);
-        imprimirResumenButton.setBounds(1000, 90, 136, 23);
+        imprimirResumenButton.setBounds(930, 70, 260, 50);
 
         jPanel1.add(jPanel2);
 
@@ -185,11 +209,12 @@ public class Mainn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirResumenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirResumenButtonActionPerformed
-        // TODO add your handling code here:
+       resultadoArea.setText(transito.generarResumen());
     }//GEN-LAST:event_imprimirResumenButtonActionPerformed
 
     private void imprimirMultasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirMultasButtonActionPerformed
-        // TODO add your handling code here:
+          String[] multas = transito.obtenerMultas();
+        resultadoArea.setText(String.join("\n\n", multas));
     }//GEN-LAST:event_imprimirMultasButtonActionPerformed
 
     private void nombreFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreFieldActionPerformed
@@ -201,7 +226,14 @@ public class Mainn extends javax.swing.JFrame {
     }//GEN-LAST:event_tipoFieldActionPerformed
 
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
-        // TODO add your handling code here:
+          try {
+            int codigo = Integer.parseInt(codigoField.getText());
+            String resultado = transito.agregarMulta(codigo, nombreField.getText(), tipoField.getText());
+            resultadoArea.setText(resultado);
+            limpiarCampos(codigoField, nombreField, tipoField);
+        } catch (NumberFormatException ex) {
+            resultadoArea.setText("Error: El código debe ser un número entero.");
+        }
     }//GEN-LAST:event_agregarButtonActionPerformed
 
     private void codigoPagarFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoPagarFieldActionPerformed
@@ -209,9 +241,25 @@ public class Mainn extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoPagarFieldActionPerformed
 
     private void PagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagarButtonActionPerformed
-        // TODO add your handling code here:
+       try {
+            int codigo = Integer.parseInt(codigoPagarField.getText());
+            String resultado = transito.pagarMulta(codigo);
+            resultadoArea.setText(resultado);
+            limpiarCampos(codigoPagarField);
+        } catch (NumberFormatException ex) {
+            resultadoArea.setText("Error: El código debe ser un número entero.");
+        }
     }//GEN-LAST:event_PagarButtonActionPerformed
 
+    private void codigoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codigoFieldActionPerformed
+
+    private void limpiarCampos(javax.swing.JTextField...campos) {
+        for (javax.swing.JTextField campo : campos) {
+            campo.setText("");
+        }
+    }
 
     public static void main(String args[]) {
 
@@ -246,4 +294,5 @@ public class Mainn extends javax.swing.JFrame {
     private javax.swing.JLabel tipoLabel;
     private javax.swing.JLabel tituloLabel;
     // End of variables declaration//GEN-END:variables
+
 }
